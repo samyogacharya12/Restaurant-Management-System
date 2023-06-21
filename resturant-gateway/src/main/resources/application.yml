@@ -21,6 +21,8 @@ spring:
           uri: lb://SECURITY-SERVICE
           predicates:
             - Path=/auth/**
+          filters:
+            - AuthenticationFilter
 
   application:
     name: resturant-gateway

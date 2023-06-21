@@ -35,7 +35,8 @@ public class AuthConfig {
             .authorizeHttpRequests()
             .antMatchers("/auth/register", "/auth/token", "/auth/validate").permitAll()
             .and()
-            .build();
+            .authorizeHttpRequests().antMatchers("/auth/users")
+            .authenticated().and().build();
     }
 
     @Bean
