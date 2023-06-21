@@ -2,7 +2,7 @@ package com.example.deliveryservice.api;
 
 import com.example.deliveryservice.dto.OrderResponseDto;
 import com.example.deliveryservice.dto.UserResponseDto;
-import com.example.deliveryservice.exception.BadRequestAlertException;
+import com.example.deliveryservice.exception.UnAuthorizeRequestAlertException;
 import com.example.deliveryservice.service.RestaurantService;
 import com.example.deliveryservice.service.UserService;
 import org.slf4j.Logger;
@@ -36,7 +36,7 @@ public class OrderController {
         logger.info("fetching orders from resturant", token);
         UserResponseDto userResponseDto = this.userService.findByUserName(token, userName);
         if (userResponseDto.getRole().equals("STAFF")) {
-            throw new BadRequestAlertException("Sorry you are not authorize for this request",
+            throw new UnAuthorizeRequestAlertException("Sorry you are not authorize for this request",
                 HttpStatus.BAD_REQUEST);
         }
         OrderResponseDto orderResponseDto = this.restaurantService.findByOrderId(token, orderId);
