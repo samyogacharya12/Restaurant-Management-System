@@ -42,4 +42,11 @@ public class AuthController {
         service.validateToken(token);
         return "Token is valid";
     }
+
+    @GetMapping("/user")
+    public ResponseEntity<UserDto> findUserByUserName(@RequestParam(value = "userName") String userName){
+        UserDto userDto=this.service.findByUserName(userName);
+        return new ResponseEntity<>(userDto,HttpStatus.OK);
+    }
+
 }

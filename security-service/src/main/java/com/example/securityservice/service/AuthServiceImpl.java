@@ -32,8 +32,8 @@ public class AuthServiceImpl implements AuthService, UserDetailsService {
     @Override
     public UserDto save(UserDto userDto) {
         logger.info("registering user");
-        Optional<User> optionalUser=this.userRepository.findByName(userDto.getName());
-        if(optionalUser.isPresent()){
+        Optional<User> optionalUser = this.userRepository.findByName(userDto.getName());
+        if (optionalUser.isPresent()) {
             throw new RuntimeException("user already exist with this username");
         }
         User user = new User();
@@ -44,6 +44,17 @@ public class AuthServiceImpl implements AuthService, UserDetailsService {
             return userDto;
         }
         return null;
+    }
+
+    @Override
+    public UserDto findByUserName(String userName) {
+        Optional<User> user = this.userRepository.findByName(userName);
+        UserDto userDto = new UserDto();
+        if (user.isPresent()) {
+            userDto.setName(user.get().getName());
+            userDto.setPassword(user.get().getPassword());
+        }
+        return userDto;
     }
 
     @Override
