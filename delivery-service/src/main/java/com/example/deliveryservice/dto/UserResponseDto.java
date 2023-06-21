@@ -1,19 +1,17 @@
-package com.example.securityservice.dto;
+package com.example.deliveryservice.dto;
 
 import lombok.*;
+
+import java.io.Serializable;
 
 @Data
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserDto {
+public class UserResponseDto implements Serializable {
 
     private String name;
-
     private String password;
-
     private String role;
-
-    private String email;
 }

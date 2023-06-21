@@ -39,6 +39,8 @@ public class AuthServiceImpl implements AuthService, UserDetailsService {
         User user = new User();
         user.setName(userDto.getName());
         user.setPassword(this.passwordEncoder.encode(userDto.getPassword()));
+        user.setRole(userDto.getRole());
+        user.setEmail(userDto.getEmail());
         user = this.userRepository.save(user);
         if (Objects.nonNull(user.getId())) {
             return userDto;
@@ -53,6 +55,7 @@ public class AuthServiceImpl implements AuthService, UserDetailsService {
         if (user.isPresent()) {
             userDto.setName(user.get().getName());
             userDto.setPassword(user.get().getPassword());
+            userDto.setRole(user.get().getRole());
         }
         return userDto;
     }
