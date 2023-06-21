@@ -37,7 +37,7 @@ public class OrderController {
         UserResponseDto userResponseDto = this.userService.findByUserName(token, userName);
         if (userResponseDto.getRole().equals("STAFF")) {
             throw new UnAuthorizeRequestAlertException("Sorry you are not authorize for this request",
-                HttpStatus.BAD_REQUEST);
+                HttpStatus.UNAUTHORIZED);
         }
         OrderResponseDto orderResponseDto = this.restaurantService.findByOrderId(token, orderId);
         return new ResponseEntity<>(orderResponseDto, HttpStatus.OK);
