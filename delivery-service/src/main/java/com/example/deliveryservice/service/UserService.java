@@ -15,4 +15,9 @@ public interface UserService {
     @GetMapping("/auth/user")
     UserResponseDto findByUserName(@RequestHeader(HttpHeaders.AUTHORIZATION) String token,
                                    @RequestParam(value = "userName") String userName);
+
+
+    @GetMapping("/auth/email")
+    UserResponseDto findByEmail(@RequestHeader(HttpHeaders.AUTHORIZATION) String token,
+                                   @RequestParam(value = "email") String userName);
 }
