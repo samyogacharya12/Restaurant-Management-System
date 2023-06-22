@@ -7,7 +7,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 
 @SpringBootApplication
 @EnableEurekaClient
-@EnableFeignClients("com.example.deliveryservice")
+@EnableFeignClients
 public class DeliveryServiceApplication {
 
 	public static void main(String[] args) {
