@@ -7,6 +7,8 @@ import com.example.securityservice.repository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -30,6 +32,8 @@ public class AuthServiceImpl implements AuthService, UserDetailsService {
     private PasswordEncoder passwordEncoder;
 
     @Override
+    @CachePut(value = "user-single", key = "#userDto.name")
+    @CacheEvict(value="user-list" , key="'getUser'")
     public UserDto save(UserDto userDto) {
         logger.info("registering user");
         Optional<User> optionalUser = this.userRepository.findByName(userDto.getName());
@@ -49,6 +53,8 @@ public class AuthServiceImpl implements AuthService, UserDetailsService {
     }
 
     @Override
+    @CachePut(value = "user-single", key = "#userName")
+    @CacheEvict(value="user-list" , key="'getUser'")
     public UserDto findByUserName(String userName) {
         Optional<User> user = this.userRepository.findByName(userName);
         UserDto userDto = new UserDto();

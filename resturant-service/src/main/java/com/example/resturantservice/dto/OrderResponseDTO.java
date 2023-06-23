@@ -16,6 +16,6 @@ public class OrderResponseDTO implements Serializable {
     private int qty;
     private double price;
     private String orderDate;
-    private String status;
+    private OrderStatus status;
     private int estimateDeliveryWindow;
 }

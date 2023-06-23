@@ -13,7 +13,7 @@ public class OrderResponseDto implements Serializable {
 
     private String orderId;
     private String name;
-    private int qty;
+    private int quantity;
     private double price;
     private String orderDate;
     private String status;
