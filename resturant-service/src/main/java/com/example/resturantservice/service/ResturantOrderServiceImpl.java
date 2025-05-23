@@ -1,6 +1,8 @@
 package com.example.resturantservice.service;
 
 import com.example.resturantservice.dto.OrderResponseDTO;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -11,6 +13,9 @@ import java.util.Map;
 public class ResturantOrderServiceImpl implements ResturantOrderService {
 
 
+    @Autowired
+    private Environment environment;
+
     @Override
     public OrderResponseDTO getOrders(String orderId) {
         return generateRandomOrders().get(orderId);
@@ -18,6 +23,10 @@ public class ResturantOrderServiceImpl implements ResturantOrderService {
 
     @Override
     public Map<String, OrderResponseDTO> generateRandomOrders() {
+        String value = environment.getProperty("local.server.port");
+        System.out.println(value);
+        String hostName=environment.getProperty("HOSTNAME");
+        System.out.println(hostName);
         Map<String, OrderResponseDTO> orderMap = new HashMap<>();
         orderMap.put("35fds631", new OrderResponseDTO("35fds63", "VEG-MEALS", 1, 199, new Date().toString(), "READY", 15));
         orderMap.put("9u71245h", new OrderResponseDTO("9u71245h", "HYDERABADI DUM BIRYANI", 2, 641, new Date().toString(), "PREPARING", 59));

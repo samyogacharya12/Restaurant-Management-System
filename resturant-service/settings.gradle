@@ -6,3 +6,5 @@ pluginManagement {
 	}
 }
 rootProject.name = 'resturant-service'
+include ':kubernetes-service'
+project(':kubernetes-service').projectDir = file('kubernetes-service')
