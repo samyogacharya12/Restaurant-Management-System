@@ -1,5 +1,3 @@
-version: "3.8"
-
 services:
   security-service:
     build:
@@ -10,22 +8,11 @@ services:
     networks:
       - currency-network
     depends_on:
-      - naming-server
-      - postgres  # Add dependency on PostgreSQL
+      - postgres
     environment:
-      EUREKA.CLIENT.SERVICEURL.DEFAULTZONE: http://naming-server:8761/eureka
       SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/user_info
       SPRING_DATASOURCE_USERNAME: postgres
       SPRING_DATASOURCE_PASSWORD: root
-
-  naming-server:
-    build:
-      context: /home/samyog/samyog/Restaurant-Management-System/service-registry
-    mem_limit: 700m
-    ports:
-      - "8761:8761"
-    networks:
-      - currency-network
 
   postgres:
     image: postgres:latest
