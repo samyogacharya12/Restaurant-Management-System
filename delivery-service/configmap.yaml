@@ -1,0 +1,7 @@
+apiVersion: v1
+data:
+    RESTURANT_SERVICE_URL: http://192.168.49.2:32731
+kind: ConfigMap
+metadata:
+    name: resturant-service
+    namespace: default
