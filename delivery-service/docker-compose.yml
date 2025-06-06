@@ -1,25 +1,10 @@
-version: "3.8"
-
 services:
   delivery-service:
     build:
       context: /home/samyog/samyog/Restaurant-Management-System/delivery-service  # Directory where the Dockerfile is located
     mem_limit: 700m
     ports:
-      - "8000:8000"
-    networks:
-      - currency-network
-    depends_on:
-      - naming-server
-    environment:
-      EUREKA.CLIENT.SERVICEURL.DEFAULTZONE: http://naming-server:8761/eureka
-
-  naming-server:
-    build:
-      context: /home/samyog/samyog/Restaurant-Management-System/service-registry  # Directory where the Dockerfile is located
-    mem_limit: 700m
-    ports:
-      - "8761:8761"
+      - "8082:8082"
     networks:
       - currency-network
 

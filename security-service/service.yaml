@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: "2025-05-24T00:15:11Z"
+  labels:
+    app: security-services
+  name: security-services
+  namespace: default
+  resourceVersion: "53405"
+  uid: 7debb243-2a5f-42a3-b47a-427e308cc3b2
+spec:
+  allocateLoadBalancerNodePorts: true
+  clusterIP: 10.97.19.13
+  clusterIPs:
+  - 10.97.19.13
+  externalTrafficPolicy: Cluster
+  internalTrafficPolicy: Cluster
+  ipFamilies:
+  - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+  - nodePort: 32731
+    port: 8083
+    protocol: TCP
+    targetPort: 8083
+  selector:
+    app: security-services
+  sessionAffinity: None
+  type: LoadBalancer
+status:
+  loadBalancer: {}

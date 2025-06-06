@@ -9,15 +9,11 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Service
-@FeignClient(name="SECURITY-SERVICE")
+@FeignClient(name = "security-client", url = "${security.service.url}")
 public interface UserService {
 
     @GetMapping("/auth/user")
     UserResponseDto findByUserName(@RequestHeader(HttpHeaders.AUTHORIZATION) String token,
                                    @RequestParam(value = "userName") String userName);
 
-
-    @GetMapping("/auth/email")
-    UserResponseDto findByEmail(@RequestHeader(HttpHeaders.AUTHORIZATION) String token,
-                                   @RequestParam(value = "email") String userName);
 }
